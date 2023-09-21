@@ -1,16 +1,31 @@
-- name: Modify and Push Repository
-  env:
-    PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
-  run: |
-    # 在此处进行仓库内容的修改，可以使用适当的命令行工具或脚本
-    echo "Modifying repository content"
+name: Modify and Push Repository
 
-    # 配置 git 身份验证
-    git config --global user.email "xie.zeyu20@gmail.com"
-    git config --global user.name "zeyu-xie"
+on:
+  push:
+    branches:
+      - main
 
-    # 为了演示目的，这里使用了一个简单的示例来修改并提交文件
-    echo "Hello, World!" > test.txt
-    git add test.txt
-    git commit -m "Modify test.txt file"
-    git push origin main
+jobs:
+  modify-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Modify and Push Repository
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: |
+          # 在此处进行仓库内容的修改，可以使用适当的命令行工具或脚本
+          echo "Modifying repository content"
+
+          # 配置 git 身份验证
+          git config --global user.email "xie.zeyu20@gmail.com"
+          git config --global user.name "zeyu-xie"
+
+          # 为了演示目的，这里使用了一个简单的示例来修改并提交文件
+          echo "Hello, World!" > test.txt
+          git add test.txt
+          git commit -m "Modify test.txt file"
+          git push origin main
