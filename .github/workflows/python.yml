@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main  # 更改为您的默认分支名称，或其他您希望触发工作流的分支
+  workflow_dispatch:
 
 jobs:
   run-python-job:
