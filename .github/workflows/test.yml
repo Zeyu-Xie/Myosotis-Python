@@ -1,36 +1,26 @@
-name: Push to Repository
-
+name: Add Test File
 on:
   push:
     branches:
-      - main  # 触发工作流程的分支
+      - main
 
 jobs:
-  push:
+  add_test_file:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'  # 设置所需的 Python 版本
-
-      - name: Install Dependencies
-        run: pip install -r requirements.txt
-
-      - name: Modify Repository Content
-        run: |
-          # 在此处进行仓库内容的修改，可以使用适当的命令行工具或脚本
-          # 例如，创建一个新的文件 test.txt
-          echo "Hello, World!" > test.txt
+      - name: Create Test File
+        run: echo "This is a test file." > test.txt
 
       - name: Commit and Push Changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config --local user.email "xie.zeyu20@gmail.com"
-          git config --local user.name "zeyu-xie"
-          git add .
-          git commit -m "Modify test.txt file"
-          git push https://${{ secrets.PAT_TOKEN }}@github.com/Zeyu-Xie/Myosotis-Python.git HEAD:main
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add test.txt
+          git commit -m "Add test.txt file"
+          git push
