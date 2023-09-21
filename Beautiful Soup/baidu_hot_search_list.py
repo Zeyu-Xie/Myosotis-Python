@@ -1,5 +1,5 @@
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup  # attention: use "pip install beautifulsoup4"
 
 # 发送HTTP请求获取网页内容
 url = "https://top.baidu.com/board?tab=realtime"
