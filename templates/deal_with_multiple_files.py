@@ -1,6 +1,8 @@
 # Deal with Multiple Files
 # By Acan
 
+# Usage: python deal_with_multiple_files.py [source_dir] [des_dir]
+
 import os
 import sys
 import magic
